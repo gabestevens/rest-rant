@@ -2,9 +2,9 @@ const React = require('react')
 const Def = require('../default')
 
 function index (data) {
-    let placesFormatted = data.places.map((place)=>{
+    let placesFormatted = data.places.map((place, i)=>{
     return(
-        <div className="col-sm-6" key= {place}>
+        <div className="col-sm-6" key= {i}>
             <h2>{place.name}</h2>
             <p className="text-center">
                 {place.cuisines}

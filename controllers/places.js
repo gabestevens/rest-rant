@@ -9,10 +9,10 @@ router.get('/', (req,res) => {
     res.render('places/index', { places })
 })
 
-router.get('/new', (req,res)=>{
+router.get('/new', (req,res)=> {
     res.render('./new')
 })
-router.post('/',(req,res)=>{
+router.post('/',(req,res)=> {
   if(!req.body.pic){
     //default image if one is not provided
     req.body.pic = 'http://placekitten.com/400/400'
@@ -27,8 +27,5 @@ router.post('/',(req,res)=>{
   res.redirect('/places')
 })
 
-// router.get('/places/:id',(req,res)=>{
-//     res.send()
-// })
 
 module.exports = router
