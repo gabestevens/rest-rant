@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  
   db.Place.create(req.body)
   .then(() => {
     res.status(303).redirect('/places')

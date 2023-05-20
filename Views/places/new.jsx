@@ -9,27 +9,54 @@ function New_form () {
                 <form method="POST" action="/places">
                     <div className="form-group">
                         <label htmlFor="name">Place Name</label>
-                        <input className="form-control" type="text" id="name" name="name" required />
+                        <input 
+                            className="form-control" 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="pic">Place Picture</label>
-                        <input className="form-control" type="url" id="pic" name="pic" />
+                        <input 
+                            className="form-control" 
+                            type="url" 
+                            id="pic"
+                            name="pic" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="city">City</label>
-                        <input className="form-control" type="text" id="city" name="city" />
+                        <input 
+                            className="form-control" 
+                            type="text" 
+                            id="city" 
+                            name="city" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="state">state</label>
-                        <input className="form-control" type="text" id="state" name="state" />
+                        <input 
+                            className="form-control" 
+                            type="text" 
+                            id="state" 
+                            name="state" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="cuisines">cuisines</label>
-                        <input className="form-control" type="text" id="cuisines" name="cuisines" required />
+                        <input 
+                            className="form-control" 
+                            type="text" 
+                            id="cuisines" 
+                            name="cuisines" 
+                            required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="founded">Founded Year</label>
-                        <input className="form-control" id="founded" name="founded" />
+                        <input 
+                            type="number"
+                            className="form-control" 
+                            id="founded" 
+                            name="founded" 
+                            defaultValue={new Date().getFullYear()} />
                     </div>
                     <input className="btn btn-primary" type="submit" value="add Place" />
                 </form>
