@@ -1,0 +1,13 @@
+h1 {
+    text-align: center;
+    color: cornflowerblue;
+}
+img {
+    height: 40vh;
+    width: 40vw;
+    margin:auto;
+}
+button {
+    color:white;
+    background-color: cornflowerblue;
+}
