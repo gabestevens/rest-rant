@@ -2,24 +2,45 @@ const React = require('react')
 const Def = require('./default')
 
 function Show (data) {
+    // if there are no comments yet this is displayed
     let comments = (
         <h3 className="inactive">
             No comments yet!
         </h3>
     )
-        if (data.place.comments.length) {
-          comments = data.place.comments.map(c => {
-            return (
-              <div className="border" key={data.place.id}>
-                <h2 className="rant">{c.rant ? 'Rant! ðŸ˜¡' : 'Rave! ðŸ˜»'}</h2>
+    //if there are no raitings yet this is displayed
+    let rating = (
+        <h3 className="inactive">
+            Not Yet rated
+        </h3>
+    )
+    if (data.place.comments.length) {
+        //gets the total star rating then gets the average and displays the average
+        let sumRatings = data.place.comments.reduce((tot,c) => {
+            return tot + c.stars
+        }, 0)
+        let averageRating = Math.round(sumRatings / data.place.comments.length)
+        let stars = ''
+        for (let i = 0; i< averageRating; i++) {
+            stars += '⭐'          
+        } 
+        rating = (
+            <h3>
+                {stars} stars
+            </h3>
+        )
+      comments = data.place.comments.map(c => {
+        return (
+            <div className="border" key={data.place.id}>
+                <h2 className="rant">{c.rant ? 'Rant! 😡' : 'Rave! 😁'}</h2>
                 <h4>{c.content}</h4>
                 <h3>
                   <stong>- {c.author}</stong>
                 </h3>
                 <h4>Rating: {c.stars}</h4>
-              </div>
-            )
-          })
+            </div>
+        )
+      })
         }
     return(
         <Def>
@@ -32,7 +53,7 @@ function Show (data) {
                     </div>
                     <div className="col-6">
                         <h2>Rating</h2>
-                        <p>Not Rated</p>
+                            {rating}
                         <h2>Discription</h2>
                         <h3>
                             {data.place.showEstablished()}
