@@ -43,7 +43,7 @@ function Show (data) {
                         <a href={`/places/${data.id}/edit`} className="btn btn-warning">
                           Edit
                         </a>
-                        <form method="post" action={`/places/${data.id}?_method=DELETE`}>
+                        <form method="post" action={`/places/${data.place.id}?_method=DELETE`}>
                             <button type="submit" className="btn btn-danger">
                                 Delete
                             </button>
@@ -53,6 +53,19 @@ function Show (data) {
                 <div className="row">
                     <h2>Comments</h2>
                     {comments}
+                    <form method="post" action={`/places/${data.place.id}/rant`}>
+                        <label className="form-group" htmlFor="author" >Author</label>
+                        <input className="form-control" type="text" id="author" name="author" />
+                        <label className="form-group" htmlFor="Content" >Content</label>
+                        <input className="form-control" type="textarea" id="content" name="content" />
+                        <label className="form-group" htmlFor="stars" >StarRating</label>
+                        <input className="form-control" type="Number" id="stars" name="stars" min="0" max="5" step=".5" placeholder="0-5 stars by .5" />
+                        <label  htmlFor="rant">rant</label>
+                        <input  type="checkbox" id="rant" name="rant" />
+                        <br></br>
+                        <br></br>
+                        <input className="btn btn-primary" type="submit" value="add comment" />
+                    </form>
                 </div>
             </main>
         </Def>
