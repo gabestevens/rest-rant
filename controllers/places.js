@@ -42,7 +42,33 @@ router.get('/:id', (req,res) => {
 })
 
 router.get('/:id/edit',(req,res) => {
-  res.render('./editPage')
+  let id = Number(req.params.id)
+  res.render('./editPage', { 
+      place: places[id],
+      id
+    })
+})
+
+router.put('/:id',(req,res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+    res.render('error404')
+  }else if (!places[id]) {
+    res.render('error404')
+  }else{
+    if(!req.body.pic){
+      //default image if one is not provided
+      req.body.pic = places[id].pic
+    }
+    if (!req.body.city){
+      req.body.city = 'anytown'
+    }
+    if(!req.body.state) {
+      req.body.state = 'USA'
+    }
+    places[id] = req.body
+    res.status(303).redirect(`/places/${id}`)
+  }
 })
 
 router.delete('/:id', (req,res) => {
