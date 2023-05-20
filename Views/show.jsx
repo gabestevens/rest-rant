@@ -38,6 +38,9 @@ function Show (data) {
                   <stong>- {c.author}</stong>
                 </h3>
                 <h4>Rating: {c.stars}</h4>
+                <form method="POST" action={`/places/${data.place.id}/rant/${c.id}?_method=DELETE`}>
+                    <input type="submit" className="btn btn-danger" value="Delete Comment" />
+                </form>
             </div>
         )
       })
@@ -61,7 +64,7 @@ function Show (data) {
                         <h4>
                             serving {data.place.cuisines}
                         </h4>
-                        <a href={`/places/${data.id}/edit`} className="btn btn-warning">
+                        <a href={`/places/${data.place.id}/edit`} className="btn btn-warning">
                           Edit
                         </a>
                         <form method="post" action={`/places/${data.place.id}?_method=DELETE`}>
@@ -82,7 +85,7 @@ function Show (data) {
                         <label className="form-group" htmlFor="stars" >StarRating</label>
                         <input className="form-control" type="Number" id="stars" name="stars" min="0" max="5" step=".5" placeholder="0-5 stars by .5" />
                         <label  htmlFor="rant">rant</label>
-                        <input  type="checkbox" id="rant" name="rant" />
+                        <input  type="checkbox" id="rant" name="rant" value="true"/>
                         <br></br>
                         <br></br>
                         <input className="btn btn-primary" type="submit" value="add comment" />

@@ -40,24 +40,42 @@ router.get('/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  res.send('PUT /places/:id stub')
+  db.Place.findByIdAndUpdate(req.params.id, req.body)
+  .then(() => {
+    res.status(303).redirect(`/places/${req.params.id}`)
+  })
+  .catch(err => {
+    console.log('err', err)
+    res.status(404).render('error404')
+  })
 })
 
 router.delete('/:id', (req, res) => {
-  res.send('DELETE /places/:id stub')
+  db.Place.findByIdAndDelete(req.params.id)
+  .then(place => {
+    res.status(303).redirect('/places')
+  })
+  .catch(err => {
+    console.log('err', err)
+    res.status(404).render('error404')
+  })
 })
 
 router.get('/:id/edit', (req, res) => {
-  res.send('GET edit form stub')
+  db.Place.findById(req.params.id)
+  .then(place => {
+    res.render('editPage', { place })
+  })
+  .catch(err => {
+    res.status(404).render('error404')
+  })
 })
 
 router.post('/:id/rant', (req, res) => {
-  console.log(req.params)
   db.Place.findById(req.params.id)
   .then(place => {
     db.Comment.create(req.body)
     .then(comment => {
-      console.log(comment)
       place.comments.push(comment.id)
       place.save()
       .then(() => {
@@ -82,7 +100,14 @@ router.post('/:id/rant', (req, res) => {
 })
 
 router.delete('/:id/rant/:rantId', (req, res) => {
-    res.send('GET /places/:id/rant/:rantId stub')
+  db.Comment.findByIdAndDelete(req.params.rantId)
+  .then(place => {
+    res.status(303).redirect(`/places/${req.params.id}`)
+  })
+  .catch(err => {
+    console.log('err', err)
+    res.status(404).render('error404')
+  })
 })
 
 module.exports = router
