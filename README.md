@@ -19,6 +19,7 @@ REST-Rant is an app where users can review restaurants.
 data for places should be set up as follows
 
 |  Field    |    Type   |
+|-----------|-----------|
 |   _id     | Object Id |
 |  name     | String    | 
 |  city     | String    | 
